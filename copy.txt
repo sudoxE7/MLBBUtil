@@ -1,51 +1,8 @@
-package com.auto.update;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-
-public class AutoUpdate {
-	
-	private ArrayList<HashMap<String, Object>> listmap = new ArrayList<>();
-
-	private String[] data = new String[] {"url", "tag"};
-	private String[] key = new String[] {"version", "title", "message", "link"};
-	
-	public AutoUpdate() {
-		
-	}
-    
-	public AutoUpdate(ArrayList<HashMap<String, Object>> listmap) {
-        this.listmap = listmap;
-    }
-	
-	public String getUrl() {
-		return data[0];
-	}
-	
-	public String getTag() {
-		return data[1];
-	}
-	
-	public String getVersion() {
-		return listmap.get(0).get(key[0]).toString();
-
-	}
-	
-	public String getTitle() {
-		return listmap.get(0).get(key[1]).toString();
-
-	}
-	
-	public String getMessage() {
-		return listmap.get(0).get(key[2]).toString();
-
-	}
-	
-	public String getLink() {
-		return listmap.get(0).get(key[3]).toString();
-
-	}
-	
+public class BuildConfig {
+   public static final String APPLICATION_ID = "com.auto.update";
+   public static final String BUILD_TYPE = "release";
+   public static final boolean DEBUG = false;
+   public static final String FLAVOR = "";
+   public static final int VERSION_CODE = 1;
+   public static final String VERSION_NAME = "1.0"; 
 }
-
-/* Mariel parin - Exo */
