@@ -1,0 +1,51 @@
+package com.auto.update;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class AutoUpdate {
+	
+	private ArrayList<HashMap<String, Object>> listmap = new ArrayList<>();
+
+	private String[] data = new String[] {"url", "tag"};
+	private String[] key = new String[] {"version", "title", "message", "link"};
+	
+	public AutoUpdate() {
+		
+	}
+    
+	public AutoUpdate(ArrayList<HashMap<String, Object>> listmap) {
+        this.listmap = listmap;
+    }
+	
+	public String getUrl() {
+		return data[0];
+	}
+	
+	public String getTag() {
+		return data[1];
+	}
+	
+	public String getVersion() {
+		return listmap.get(0).get(key[0]).toString();
+
+	}
+	
+	public String getTitle() {
+		return listmap.get(0).get(key[1]).toString();
+
+	}
+	
+	public String getMessage() {
+		return listmap.get(0).get(key[2]).toString();
+
+	}
+	
+	public String getLink() {
+		return listmap.get(0).get(key[3]).toString();
+
+	}
+	
+}
+
+/* Mariel parin - Exo */
