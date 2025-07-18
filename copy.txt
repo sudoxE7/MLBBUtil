@@ -1,3 +1,24 @@
+"Good day po, kami po ang Group [Number], and we are:
+Andrei De Ocampo
+[Groupmate 2's Name]
+
+[Groupmate 3's Name]
+
+[Groupmate 4's Name]
+
+Ang system po namin ay tinatawag na Taki – Isang Simple Real-Time Chat App.
+
+Dito po, makaka-expect kayo ng:
+
+Madaling Sign Up at Sign In
+
+Real-time na palitan ng messages
+
+Basic profile setup
+
+At simple pero maayos na UI
+
+
 # loading
 Ma'am/Sir, ito po yung Splash screen. Pag start ng app, iche-check niya kung may naka-login na user sa local SQLite session. Kung meron, automatic siyang maglo-load ng homepage after 3 seconds. Kung wala, diretso po siya sa Sign In page. Ginagamit po yung QTimer.singleShot para mag-delay ng 3 seconds bago maglipat ng screen."
 
