@@ -1,81 +1,18 @@
-package com.exodus.in;
+# loading
+Ma'am/Sir, ito po yung Splash screen. Pag start ng app, iche-check niya kung may naka-login na user sa local SQLite session. Kung meron, automatic siyang maglo-load ng homepage after 3 seconds. Kung wala, diretso po siya sa Sign In page. Ginagamit po yung QTimer.singleShot para mag-delay ng 3 seconds bago maglipat ng screen."
 
-import android.content.Intent;
+# Sign In
+Ma'am, ito po yung function para sa Sign In. Kapag binuksan, automatic na lilinisin yung input fields. Kapag nag-click po ng Sign In button, iche-check niya kung may laman yung credential at password. Kung meron, maglo-loading muna siya for 3 seconds, tapos tsaka siya mag-a-authenticate.
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+Hahanapin niya sa Firebase Database kung may contact na match sa username, email, o mobile — at kung tama rin ang password. Kapag successful, magse-save ng session sa SQLite local database at lilipat po sa homepage ng app. Kapag mali, lalabas po yung error dialog. Kung walang connection sa Firebase, may alert din na lalabas."
 
-import android.content.Context;
-import android.util.Log;
 
-public class MyLogger {
+# Sign up
+Ma'am/Sir, ito po yung function para sa Sign Up. Una, nililinis niya lahat ng input at tinatago yung mga error message. Kapag nagsimulang magtype ng username, automatic niyang iche-check after 400ms kung available sa Firebase. Kapag hindi available, lalabas yung X icon at hindi ma-enable yung next button. Kung available, lalabas check icon at pwede na mag-next.
 
-	/**
-	 * Logcat Reader Class
-	 * <p>
-	 * Uses:
-	 * <br>
-	 *  - "SketchLogger.broadcastLog(String)" to manually send a debug log that's then viewable in Logcat Reader
-	 *  - "SketchLogger.stopLogging()" to stop logging
-	 */
+Pag-click ng next, magpapalit ng UI para sa password. Iche-check din kung may nilagay na password bago i-allow mag-continue. Meron ding checkbox para i-toggle yung visibility ng password. Kapag may password na, puwede nang magproceed sa next page o welcome screen."
 
-	private static Thread loggerThread = new Thread() {
-		@Override
-		public void run() {
-			isRunning = true;
+# Welcome
+Ma'am/Sir, ito po yung Welcome part ng Sign Up. Ipinapakita po dito yung welcome message na may pangalan ng bagong user. Pag-clinic yung 'Complete Sign Up' button, lalabas muna yung loading, tapos after 3 seconds, ise-save niya yung new user sa Firebase gamit yung registerContact.
 
-			try {
-				Runtime.getRuntime().exec("logcat -c");
-				Process process = Runtime.getRuntime().exec("logcat");
-
-				try (BufferedReader bufferedReader = new BufferedReader(
-						new InputStreamReader(process.getInputStream()))) {
-					String logTxt = bufferedReader.readLine();
-					do {
-						broadcastLog(logTxt);
-					} while (isRunning && ((logTxt = bufferedReader.readLine()) != null));
-
-					// Thread got stopped, restart if not stopping wantedly
-					if (isRunning) {
-						broadcastLog("Logger got killed. Restarting.");
-						startLogging();
-					} else {
-						broadcastLog("Logger stopped.");
-					}
-				}
-			} catch (Exception e) {
-				broadcastLog(e.toString());
-			}
-		}
-	};
-
-	private static volatile boolean isRunning = false;
-
-	public static void startLogging() {
-		if (!isRunning) {
-			loggerThread.start();
-		} else {
-			throw new IllegalStateException("Logger already running");
-		}
-	}
-
-	public static void broadcastLog(String log) {
-		Context context = MyApplication.getContext();
-
-		Intent intent = new Intent();
-		intent.setAction("com.sketchware.pro.ACTION_NEW_DEBUG_LOG");
-		intent.putExtra("log", log);
-		intent.putExtra("packageName", context.getPackageName());
-		context.sendBroadcast(intent);
-	}
-
-	public static void stopLogging() {
-		if (isRunning) {
-			isRunning = false;
-			broadcastLog("Stopping logger by user request.");
-		} else {
-			throw new IllegalStateException("Logger not running");
-		}
-	}
-}
+Kasama po sa sinasave ay username at password — tapos nilalagay din siya sa local SQLite session para automatic na naka-login. Pagkatapos nun, papasok na po siya sa homepage ng app."
